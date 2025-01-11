@@ -1,0 +1,306 @@
+Database_name:-Zomato
+tables;
++------------------+
+| Tables_in_zomato |
++------------------+
+| customers        |
+| orders           |
+| payments         |
+| restaurants      |
+| reviews          |
++------------------+
+customers;
++------------+-----------+----------+----------+-----------+------------+
+| CustomerID | FirstName | LastName | Phone    | City      | JoinDate   |
++------------+-----------+----------+----------+-----------+------------+
+|          1 | John      | Doe      | 555-1234 | Mumbai    | 2023-01-15 |
+|          2 | Jane      | Smith    | 555-5678 | Mumbai    | 2022-07-21 |
+|          3 | Alice     | Johnson  | 555-9876 | Delhi     | 2023-11-10 |
+|          4 | Bob       | Brown    | 555-1122 | Bangalore | 2023-03-05 |
+|          5 | Mary      | Davis    | 555-3344 | Chennai   | 2023-02-25 |
+|          6 | David     | Miller   | 555-5566 | Mumbai    | 2022-08-30 |
+|          7 | Susan     | Wilson   | 555-7788 | Bangalore | 2023-05-20 |
+|          8 | Thomas    | Moore    | 555-9900 | Delhi     | 2023-06-15 |
+|          9 | Emily     | Taylor   | 555-2233 | Mumbai    | 2023-04-05 |
+|         10 | Chris     | Anderson | 555-4455 | Chennai   | 2023-12-01 |
++------------+-----------+----------+----------+-----------+------------+
+orders;
++---------+------------+--------------+------------+-------------+-------------+
+| OrderID | CustomerID | RestaurantID | OrderDate  | OrderAmount | OrderStatus |
++---------+------------+--------------+------------+-------------+-------------+
+|       1 |          1 |            1 | 2023-01-16 |      850.00 | Delivered   |
+|       2 |          2 |            2 | 2022-07-22 |      750.00 | Cancelled   |
+|       3 |          3 |            3 | 2023-11-11 |     1200.00 | Delivered   |
+|       4 |          4 |            4 | 2023-03-06 |      700.00 | Delivered   |
+|       5 |          5 |            5 | 2023-02-26 |      600.00 | Delivered   |
+|       6 |          6 |            6 | 2022-08-31 |      950.00 | Pending     |
+|       7 |          7 |            7 | 2023-05-21 |      400.00 | Delivered   |
+|       8 |          8 |            8 | 2023-06-16 |     1250.00 | Delivered   |
+|       9 |          9 |            9 | 2023-04-06 |      950.00 | Cancelled   |
+|      10 |         10 |           10 | 2023-12-02 |      850.00 | Delivered   |
++---------+------------+--------------+------------+-------------+-------------+
+payments;
++-----------+---------+---------------+---------+-------------+
+| PaymentID | OrderID | PaymentMethod | Amount  | PaymentDate |
++-----------+---------+---------------+---------+-------------+
+|         1 |       1 | Card          |  850.00 | 2023-01-16  |
+|         2 |       2 | Cash          |  750.00 | 2022-07-22  |
+|         3 |       3 | Card          | 1200.00 | 2023-11-11  |
+|         4 |       4 | Wallet        |  700.00 | 2023-03-06  |
+|         5 |       5 | Card          |  600.00 | 2023-02-26  |
+|         6 |       6 | Card          |  950.00 | 2022-08-31  |
+|         7 |       7 | Cash          |  400.00 | 2023-05-21  |
+|         8 |       8 | Wallet        | 1250.00 | 2023-06-16  |
+|         9 |       9 | Card          |  950.00 | 2023-04-06  |
+|        10 |      10 | Cash          |  850.00 | 2023-12-02  |
++-----------+---------+---------------+---------+-------------+
+restaurants;
++--------------+-----------------+-----------+-------------+--------+-------------------+
+| RestaurantID | Name            | City      | CuisineType | Rating | AverageCostForTwo |
++--------------+-----------------+-----------+-------------+--------+-------------------+
+|            1 | Spicy Corner    | Mumbai    | Indian      |    4.7 |            800.00 |
+|            2 | Chopsticks      | Mumbai    | Chinese     |    4.5 |            600.00 |
+|            3 | La Pizzeria     | Delhi     | Italian     |    4.8 |           1000.00 |
+|            4 | Tandoor Express | Bangalore | Indian      |    4.3 |            700.00 |
+|            5 | The Dragon      | Delhi     | Chinese     |    4.4 |            500.00 |
+|            6 | Mamma Mia       | Mumbai    | Italian     |    4.6 |            900.00 |
+|            7 | Green Bowl      | Chennai   | Indian      |    3.9 |            400.00 |
+|            8 | Sushi World     | Bangalore | Japanese    |    4.2 |           1200.00 |
+|            9 | Pasta House     | Mumbai    | Italian     |    4.5 |            950.00 |
+|           10 | Curry Palace    | Delhi     | Indian      |    4.9 |            850.00 |
++--------------+-----------------+-----------+-------------+--------+-------------------+
+reviews;
++----------+------------+--------------+--------+---------------------------------------------+------------+
+| ReviewID | CustomerID | RestaurantID | Rating | Comment                                     | ReviewDate |
++----------+------------+--------------+--------+---------------------------------------------+------------+
+|        1 |          1 |            1 |    4.5 | Great food, will order again!               | 2023-01-17 |
+|        2 |          2 |            2 |    3.5 | The food was okay, nothing special.         | 2022-07-23 |
+|        3 |          3 |            3 |    5.0 | Absolutely loved the pizza, best in town!   | 2023-11-12 |
+|        4 |          4 |            4 |    4.0 | Good, but the portion size could be bigger. | 2023-03-07 |
+|        5 |          5 |            5 |    4.3 | Tasty food, but delivery was slow.          | 2023-02-27 |
+|        6 |          6 |            6 |    4.6 | Excellent Italian food, highly recommend.   | 2022-09-01 |
+|        7 |          7 |            7 |    3.9 | Food was decent, but not amazing.           | 2023-05-22 |
+|        8 |          8 |            8 |    4.8 | Great sushi, I will order again soon!       | 2023-06-17 |
+|        9 |          9 |            9 |    4.5 | Pasta was good, but could use more flavor.  | 2023-04-07 |
+|       10 |         10 |           10 |    5.0 | Fantastic food and quick delivery.          | 2023-12-03 |
++----------+------------+--------------+--------+---------------------------------------------+------------+
+
+1. Retrieve the names and locations of restaurants with a rating of 4.5 or higher.
+ SELECT
+    ->     Name,
+    ->     City
+    -> FROM
+    ->     Restaurants
+    -> WHERE
+    ->     Rating >= 4.5;
++--------------+--------+
+| Name         | City   |
++--------------+--------+
+| Spicy Corner | Mumbai |
+| Chopsticks   | Mumbai |
+| La Pizzeria  | Delhi  |
+| Mamma Mia    | Mumbai |
+| Pasta House  | Mumbai |
+| Curry Palace | Delhi  |
++--------------+--------+
+
+2. Find the total number of orders placed by each customer.
+ SELECT
+    ->     c.CustomerID,
+    ->     c.FirstName,
+    ->     c.LastName,
+    ->     COUNT(o.OrderID) AS TotalOrders
+    -> FROM
+    ->     Customers c
+    -> JOIN
+    ->     Orders o ON c.CustomerID = o.CustomerID
+    -> GROUP BY
+    ->     c.CustomerID;
++------------+-----------+----------+-------------+
+| CustomerID | FirstName | LastName | TotalOrders |
++------------+-----------+----------+-------------+
+|          1 | John      | Doe      |           1 |
+|          2 | Jane      | Smith    |           1 |
+|          3 | Alice     | Johnson  |           1 |
+|          4 | Bob       | Brown    |           1 |
+|          5 | Mary      | Davis    |           1 |
+|          6 | David     | Miller   |           1 |
+|          7 | Susan     | Wilson   |           1 |
+|          8 | Thomas    | Moore    |           1 |
+|          9 | Emily     | Taylor   |           1 |
+|         10 | Chris     | Anderson |           1 |
++------------+-----------+----------+-------------+
+
+3. List all restaurants offering "Italian" cuisine in "Mumbai".
+ SELECT
+    ->     Name,
+    ->     City,
+    ->     CuisineType
+    -> FROM
+    ->     Restaurants
+    -> WHERE
+    ->     CuisineType = 'Italian' AND City = 'Mumbai';
++-------------+--------+-------------+
+| Name        | City   | CuisineType |
++-------------+--------+-------------+
+| Mamma Mia   | Mumbai | Italian     |
+| Pasta House | Mumbai | Italian     |
++-------------+--------+-------------+
+
+4. Calculate the total revenue generated by each restaurant from completed orders.
+ SELECT
+    ->     r.RestaurantID,
+    ->     r.Name,
+    ->     SUM(o.OrderAmount) AS TotalRevenue
+    -> FROM
+    ->     Restaurants r
+    -> JOIN
+    ->     Orders o ON r.RestaurantID = o.RestaurantID
+    -> WHERE
+    ->     o.OrderStatus = 'Delivered'
+    -> GROUP BY
+    ->     r.RestaurantID;
++--------------+-----------------+--------------+
+| RestaurantID | Name            | TotalRevenue |
++--------------+-----------------+--------------+
+|            1 | Spicy Corner    |       850.00 |
+|            3 | La Pizzeria     |      1200.00 |
+|            4 | Tandoor Express |       700.00 |
+|            5 | The Dragon      |       600.00 |
+|            7 | Green Bowl      |       400.00 |
+|            8 | Sushi World     |      1250.00 |
+|           10 | Curry Palace    |       850.00 |
++--------------+-----------------+--------------+
+
+5. Retrieve the most recent order placed by each customer.
+ SELECT
+    ->     o.CustomerID,
+    ->     o.OrderID,
+    ->     o.OrderDate,
+    ->     o.OrderAmount
+    -> FROM
+    ->     Orders o
+    -> WHERE
+    ->     o.OrderDate = (SELECT MAX(OrderDate) FROM Orders WHERE CustomerID = o.CustomerID);
++------------+---------+------------+-------------+
+| CustomerID | OrderID | OrderDate  | OrderAmount |
++------------+---------+------------+-------------+
+|          1 |       1 | 2023-01-16 |      850.00 |
+|          2 |       2 | 2022-07-22 |      750.00 |
+|          3 |       3 | 2023-11-11 |     1200.00 |
+|          4 |       4 | 2023-03-06 |      700.00 |
+|          5 |       5 | 2023-02-26 |      600.00 |
+|          6 |       6 | 2022-08-31 |      950.00 |
+|          7 |       7 | 2023-05-21 |      400.00 |
+|          8 |       8 | 2023-06-16 |     1250.00 |
+|          9 |       9 | 2023-04-06 |      950.00 |
+|         10 |      10 | 2023-12-02 |      850.00 |
++------------+---------+------------+-------------+
+
+6. List customers who have not placed any orders yet.
+ SELECT
+    ->     c.CustomerID,
+    ->     c.FirstName,
+    ->     c.LastName
+    -> FROM
+    ->     Customers c
+    -> LEFT JOIN
+    ->     Orders o ON c.CustomerID = o.CustomerID
+    -> WHERE
+    ->     o.OrderID IS NULL;
+Empty set (0.00 sec)
+
+7. Identify the most reviewed restaurants.
+ SELECT
+    ->     r.RestaurantID,
+    ->     r.Name,
+    ->     COUNT(rv.ReviewID) AS ReviewCount
+    -> FROM
+    ->     Restaurants r
+    -> JOIN
+    ->     Reviews rv ON r.RestaurantID = rv.RestaurantID
+    -> GROUP BY
+    ->     r.RestaurantID
+    -> ORDER BY
+    ->     ReviewCount DESC;
++--------------+-----------------+-------------+
+| RestaurantID | Name            | ReviewCount |
++--------------+-----------------+-------------+
+|            1 | Spicy Corner    |           1 |
+|            2 | Chopsticks      |           1 |
+|            3 | La Pizzeria     |           1 |
+|            4 | Tandoor Express |           1 |
+|            5 | The Dragon      |           1 |
+|            6 | Mamma Mia       |           1 |
+|            7 | Green Bowl      |           1 |
+|            8 | Sushi World     |           1 |
+|            9 | Pasta House     |           1 |
+|           10 | Curry Palace    |           1 |
++--------------+-----------------+-------------+
+
+8. Find the most preferred payment method.
+ SELECT
+    ->     PaymentMethod,
+    ->     COUNT(PaymentID) AS PaymentCount
+    -> FROM
+    ->     Payments
+    -> GROUP BY
+    ->     PaymentMethod
+    -> ORDER BY
+    ->     PaymentCount DESC
+    -> LIMIT 1;
++---------------+--------------+
+| PaymentMethod | PaymentCount |
++---------------+--------------+
+| Card          |            5 |
++---------------+--------------+
+
+9. List the top 5 restaurants by total revenue.
+ SELECT
+    ->     r.RestaurantID,
+    ->     r.Name,
+    ->     SUM(o.OrderAmount) AS TotalRevenue
+    -> FROM
+    ->     Restaurants r
+    -> JOIN
+    ->     Orders o ON r.RestaurantID = o.RestaurantID
+    -> WHERE
+    ->     o.OrderStatus = 'Delivered'
+    -> GROUP BY
+    ->     r.RestaurantID
+    -> ORDER BY
+    ->     TotalRevenue DESC
+    -> LIMIT 5;
++--------------+-----------------+--------------+
+| RestaurantID | Name            | TotalRevenue |
++--------------+-----------------+--------------+
+|            8 | Sushi World     |      1250.00 |
+|            3 | La Pizzeria     |      1200.00 |
+|            1 | Spicy Corner    |       850.00 |
+|           10 | Curry Palace    |       850.00 |
+|            4 | Tandoor Express |       700.00 |
++--------------+-----------------+--------------+
+
+10. Show the details of all cancelled orders along with the customer's and restaurant's names
+ SELECT
+    ->     o.OrderID,
+    ->     o.OrderDate,
+    ->     o.OrderAmount,
+    ->     o.OrderStatus,
+    ->     c.FirstName AS CustomerFirstName,
+    ->     c.LastName AS CustomerLastName,
+    ->     r.Name AS RestaurantName
+    -> FROM
+    ->     Orders o
+    -> JOIN
+    ->     Customers c ON o.CustomerID = c.CustomerID
+    -> JOIN
+    ->     Restaurants r ON o.RestaurantID = r.RestaurantID
+    -> WHERE
+    ->     o.OrderStatus = 'Cancelled';
++---------+------------+-------------+-------------+-------------------+------------------+----------------+
+| OrderID | OrderDate  | OrderAmount | OrderStatus | CustomerFirstName | CustomerLastName | RestaurantName |
++---------+------------+-------------+-------------+-------------------+------------------+----------------+
+|       2 | 2022-07-22 |      750.00 | Cancelled   | Jane              | Smith            | Chopsticks     |
+|       9 | 2023-04-06 |      950.00 | Cancelled   | Emily             | Taylor           | Pasta House    |
++---------+------------+-------------+-------------+-------------------+------------------+----------------+
