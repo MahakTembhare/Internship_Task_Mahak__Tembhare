@@ -1,0 +1,289 @@
+Retail_store Database;
+tables;
++------------------------+
+| Tables_in_retail_store |
++------------------------+
+| customers              |
+| orderdetails           |
+| orders                 |
+| payments               |
+| products               |
++------------------------+
+
+customers;
++-------------+------------+-----------+----------------------------+----------+-----------------------------+------------+
+| customer_id | first_name | last_name | email                      | phone    | address                     | join_date  |
++-------------+------------+-----------+----------------------------+----------+-----------------------------+------------+
+|           1 | John       | Doe       | john.doe@example.com       | 555-1234 | 123 Elm St, Springfield     | 2024-01-01 |
+|           2 | Jane       | Smith     | jane.smith@example.com     | 555-5678 | 456 Oak St, Springfield     | 2023-06-15 |
+|           3 | Alice      | Johnson   | alice.johnson@example.com  | 555-9876 | 789 Pine St, Springfield    | 2023-09-21 |
+|           4 | Bob        | Brown     | bob.brown@example.com      | 555-1122 | 101 Maple St, Springfield   | 2022-11-30 |
+|           5 | Mary       | Davis     | mary.davis@example.com     | 555-3344 | 202 Birch St, Springfield   | 2023-05-10 |
+|           6 | David      | Miller    | david.miller@example.com   | 555-5566 | 303 Cedar St, Springfield   | 2024-02-14 |
+|           7 | Susan      | Wilson    | susan.wilson@example.com   | 555-7788 | 404 Ash St, Springfield     | 2023-08-25 |
+|           8 | Thomas     | Moore     | thomas.moore@example.com   | 555-9900 | 505 Willow St, Springfield  | 2024-03-02 |
+|           9 | Emily      | Taylor    | emily.taylor@example.com   | 555-2233 | 606 Cherry St, Springfield  | 2024-01-15 |
+|          10 | Chris      | Anderson  | chris.anderson@example.com | 555-4455 | 707 Redwood St, Springfield | 2023-12-05 |
++-------------+------------+-----------+----------------------------+----------+-----------------------------+------------+
+orderdetails;
++-----------------+----------+------------+----------+------------+
+| order_detail_id | order_id | product_id | quantity | unit_price |
++-----------------+----------+------------+----------+------------+
+|               1 |        1 |          1 |        1 |     999.99 |
+|               2 |        1 |          2 |        1 |     599.99 |
+|               3 |        1 |          9 |        1 |     129.99 |
+|               4 |        2 |          3 |        1 |     799.99 |
+|               5 |        2 |          5 |        2 |      49.99 |
+|               6 |        3 |          4 |        1 |      79.99 |
+|               7 |        4 |          7 |        2 |      39.99 |
+|               8 |        5 |          6 |        2 |      19.99 |
+|               9 |        6 |          8 |        2 |      59.99 |
+|              10 |        7 |         10 |        1 |     199.99 |
++-----------------+----------+------------+----------+------------+
+orders;
++----------+-------------+------------+--------------+--------------+
+| order_id | customer_id | order_date | total_amount | order_status |
++----------+-------------+------------+--------------+--------------+
+|        1 |           1 | 2024-01-02 |      1599.97 | Shipped      |
+|        2 |           2 | 2023-12-10 |      1199.98 | Pending      |
+|        3 |           3 | 2023-09-22 |       799.99 | Shipped      |
+|        4 |           4 | 2022-12-05 |      1799.98 | Shipped      |
+|        5 |           5 | 2023-05-12 |       199.98 | Shipped      |
+|        6 |           6 | 2024-02-14 |       599.97 | Pending      |
+|        7 |           7 | 2023-08-26 |       279.98 | Shipped      |
+|        8 |           8 | 2024-03-05 |      1099.95 | Shipped      |
+|        9 |           9 | 2024-01-16 |       229.98 | Pending      |
+|       10 |          10 | 2023-12-10 |       359.97 | Shipped      |
++----------+-------------+------------+--------------+--------------+
+payments;
++------------+----------+--------------+----------------+----------------+
+| payment_id | order_id | payment_date | payment_amount | payment_method |
++------------+----------+--------------+----------------+----------------+
+|          1 |        1 | 2024-01-03   |        1599.97 | Credit Card    |
+|          2 |        2 | 2023-12-11   |        1199.98 | Debit Card     |
+|          3 |        3 | 2023-09-23   |         799.99 | Credit Card    |
+|          4 |        4 | 2022-12-06   |        1799.98 | Cash           |
+|          5 |        5 | 2023-05-13   |         199.98 | Credit Card    |
+|          6 |        6 | 2024-02-15   |         599.97 | Debit Card     |
+|          7 |        7 | 2023-08-27   |         279.98 | Credit Card    |
+|          8 |        8 | 2024-03-06   |        1099.95 | Cash           |
+|          9 |        9 | 2024-01-17   |         229.98 | Credit Card    |
+|         10 |       10 | 2023-12-11   |         359.97 | Debit Card     |
++------------+----------+--------------+----------------+----------------+
+products;
++------------+--------------+-----------------+--------+----------------+
+| product_id | product_name | category        | price  | stock_quantity |
++------------+--------------+-----------------+--------+----------------+
+|          1 | Laptop       | Electronics     | 999.99 |             15 |
+|          2 | Smartphone   | Electronics     | 599.99 |             30 |
+|          3 | TV           | Electronics     | 799.99 |             10 |
+|          4 | Coffee Maker | Home Appliances |  79.99 |             50 |
+|          5 | Blender      | Home Appliances |  49.99 |             40 |
+|          6 | T-shirt      | Clothing        |  19.99 |            100 |
+|          7 | Jeans        | Clothing        |  39.99 |             75 |
+|          8 | Shoes        | Clothing        |  59.99 |             60 |
+|          9 | Headphones   | Electronics     | 129.99 |             20 |
+|         10 | Smart Watch  | Electronics     | 199.99 |             25 |
++------------+--------------+-----------------+--------+----------------+
+
+1. Find the Total Number of Orders for Each Customer
+ SELECT
+    ->     c.customer_id,
+    ->     c.first_name,
+    ->     c.last_name,
+    ->     COUNT(o.order_id) AS total_orders
+    -> FROM
+    ->     Customers c
+    -> JOIN
+    ->     Orders o ON c.customer_id = o.customer_id
+    -> GROUP BY
+    ->     c.customer_id;
++-------------+------------+-----------+--------------+
+| customer_id | first_name | last_name | total_orders |
++-------------+------------+-----------+--------------+
+|           1 | John       | Doe       |            1 |
+|           2 | Jane       | Smith     |            1 |
+|           3 | Alice      | Johnson   |            1 |
+|           4 | Bob        | Brown     |            1 |
+|           5 | Mary       | Davis     |            1 |
+|           6 | David      | Miller    |            1 |
+|           7 | Susan      | Wilson    |            1 |
+|           8 | Thomas     | Moore     |            1 |
+|           9 | Emily      | Taylor    |            1 |
+|          10 | Chris      | Anderson  |            1 |
++-------------+------------+-----------+--------------+
+
+2. Find the Total Sales Amount for Each Product (Revenue per Product)
+ SELECT
+    ->     p.product_id,
+    ->     p.product_name,
+    ->     SUM(od.quantity * od.unit_price) AS total_sales
+    -> FROM
+    ->     Products p
+    -> JOIN
+    ->     OrderDetails od ON p.product_id = od.product_id
+    -> GROUP BY
+    ->     p.product_id;
++------------+--------------+-------------+
+| product_id | product_name | total_sales |
++------------+--------------+-------------+
+|          1 | Laptop       |      999.99 |
+|          2 | Smartphone   |      599.99 |
+|          3 | TV           |      799.99 |
+|          4 | Coffee Maker |       79.99 |
+|          5 | Blender      |       99.98 |
+|          6 | T-shirt      |       39.98 |
+|          7 | Jeans        |       79.98 |
+|          8 | Shoes        |      119.98 |
+|          9 | Headphones   |      129.99 |
+|         10 | Smart Watch  |      199.99 |
++------------+--------------+-------------+
+
+3. Find the Most Expensive Product Sold
+ SELECT
+    ->     p.product_id,
+    ->     p.product_name,
+    ->     MAX(od.unit_price) AS max_price
+    -> FROM
+    ->     Products p
+    -> JOIN
+    ->     OrderDetails od ON p.product_id = od.product_id
+    -> GROUP BY
+    ->     p.product_id
+    -> ORDER BY
+    ->     max_price DESC
+    -> LIMIT 1;
++------------+--------------+-----------+
+| product_id | product_name | max_price |
++------------+--------------+-----------+
+|          1 | Laptop       |    999.99 |
++------------+--------------+-----------+
+
+4. Get the List of Customers Who Have Placed Orders in the Last 30 Days
+ SELECT
+    ->     c.customer_id,
+    ->     c.first_name,
+    ->     c.last_name,
+    ->     c.email,
+    ->     c.phone
+    -> FROM
+    ->     Customers c
+    -> JOIN
+    ->     Orders o ON c.customer_id = o.customer_id
+    -> WHERE
+    ->     o.order_date >= CURDATE() - INTERVAL 30 DAY;
+ Empty set (0.01 sec)
+ 
+5. Calculate the Total Amount Paid by Each Customer
+ SELECT
+    ->     c.customer_id,
+    ->     c.first_name,
+    ->     c.last_name,
+    ->     SUM(p.payment_amount) AS total_paid
+    -> FROM
+    ->     Customers c
+    -> JOIN
+    ->     Orders o ON c.customer_id = o.customer_id
+    -> JOIN
+    ->     Payments p ON o.order_id = p.order_id
+    -> GROUP BY
+    ->     c.customer_id;
++-------------+------------+-----------+------------+
+| customer_id | first_name | last_name | total_paid |
++-------------+------------+-----------+------------+
+|           1 | John       | Doe       |    1599.97 |
+|           2 | Jane       | Smith     |    1199.98 |
+|           3 | Alice      | Johnson   |     799.99 |
+|           4 | Bob        | Brown     |    1799.98 |
+|           5 | Mary       | Davis     |     199.98 |
+|           6 | David      | Miller    |     599.97 |
+|           7 | Susan      | Wilson    |     279.98 |
+|           8 | Thomas     | Moore     |    1099.95 |
+|           9 | Emily      | Taylor    |     229.98 |
+|          10 | Chris      | Anderson  |     359.97 |
++-------------+------------+-----------+------------+
+
+6. Get the Number of Products Sold by Category
+ SELECT
+    ->     p.category,
+    ->     SUM(od.quantity) AS total_quantity_sold
+    -> FROM
+    ->     Products p
+    -> JOIN
+    ->     OrderDetails od ON p.product_id = od.product_id
+    -> GROUP BY
+    ->     p.category;
++-----------------+---------------------+
+| category        | total_quantity_sold |
++-----------------+---------------------+
+| Electronics     |                   5 |
+| Home Appliances |                   3 |
+| Clothing        |                   6 |
++-----------------+---------------------+
+
+7. List All Orders That Are Pending (i.e., Orders that haven't been shipped yet)
+ SELECT
+    ->     o.order_id,
+    ->     o.customer_id,
+    ->     o.order_date,
+    ->     o.total_amount,
+    ->     o.order_status
+    -> FROM
+    ->     Orders o
+    -> WHERE
+    ->     o.order_status = 'Pending';
++----------+-------------+------------+--------------+--------------+
+| order_id | customer_id | order_date | total_amount | order_status |
++----------+-------------+------------+--------------+--------------+
+|        2 |           2 | 2023-12-10 |      1199.98 | Pending      |
+|        6 |           6 | 2024-02-14 |       599.97 | Pending      |
+|        9 |           9 | 2024-01-16 |       229.98 | Pending      |
++----------+-------------+------------+--------------+--------------+
+
+8. Find the Average Order Value (Total Order Amount / Number of Orders)
+ SELECT
+    ->     AVG(o.total_amount) AS average_order_value
+    -> FROM
+    ->     Orders o;
++---------------------+
+| average_order_value |
++---------------------+
+|          816.975000 |
++---------------------+
+
+9. List the Top 5 Customers Who Have Spent the Most Money
+ SELECT
+    ->     c.customer_id,
+    ->     c.first_name,
+    ->     c.last_name,
+    ->     SUM(o.total_amount) AS total_spent
+    -> FROM
+    ->     Customers c
+    -> JOIN
+    ->     Orders o ON c.customer_id = o.customer_id
+    -> GROUP BY
+    ->     c.customer_id
+    -> ORDER BY
+    ->     total_spent DESC
+    -> LIMIT 5;
++-------------+------------+-----------+-------------+
+| customer_id | first_name | last_name | total_spent |
++-------------+------------+-----------+-------------+
+|           4 | Bob        | Brown     |     1799.98 |
+|           1 | John       | Doe       |     1599.97 |
+|           2 | Jane       | Smith     |     1199.98 |
+|           8 | Thomas     | Moore     |     1099.95 |
+|           3 | Alice      | Johnson   |      799.99 |
++-------------+------------+-----------+-------------+
+
+10. Find the Products That Have Never Been Sold
+ SELECT
+    ->     p.product_id,
+    ->     p.product_name
+    -> FROM
+    ->     Products p
+    -> LEFT JOIN
+    ->     OrderDetails od ON p.product_id = od.product_id
+    -> WHERE
+    ->     od.product_id IS NULL;
+ Empty set (0.00 sec)

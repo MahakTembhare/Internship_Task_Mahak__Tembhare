@@ -1,0 +1,85 @@
+University_Database;
++-------------------------------+
+| Tables_in_university_database |
++-------------------------------+
+| courses                       |
+| departments                   |
+| enrollments                   |
+| professors                    |
+| students                      |
++-------------------------------+
+Courses:-
++-----------+-----------------------------+---------------+--------------+---------+
+| course_id | course_name                 | department_id | professor_id | credits |
++-----------+-----------------------------+---------------+--------------+---------+
+|         1 | Introduction to Programming |             1 |          101 |       3 |
+|         2 | Circuit Theory              |             2 |          102 |       4 |
+|         3 | Thermodynamics              |             3 |          103 |       3 |
+|         4 | Structural Analysis         |             4 |          104 |       3 |
+|         5 | Cell Biology                |             5 |          105 |       3 |
+|         6 | Quantum Physics             |             6 |          106 |       4 |
+|         7 | Calculus I                  |             7 |          107 |       3 |
+|         8 | Organic Chemistry           |             8 |          108 |       3 |
+|         9 | Intro to Psychology         |             9 |          109 |       3 |
+|        10 | Microeconomics              |            10 |          110 |       3 |
++-----------+-----------------------------+---------------+--------------+---------+
+Departments:-
++---------------+-----------------+
+| department_id | department_name |
++---------------+-----------------+
+|             1 | CS              |
+|             2 | EE              |
+|             3 | ME              |
+|             4 | CE              |
+|             5 | Bio             |
+|             6 | Phy             |
+|             7 | Math            |
+|             8 | Chem            |
+|             9 | Psy             |
+|            10 | Econ            |
++---------------+-----------------+
+Enrollments:-
++---------------+------------+-----------+-----------------+-------+
+| enrollment_id | student_id | course_id | enrollment_date | grade |
++---------------+------------+-----------+-----------------+-------+
+|             1 |          1 |         1 | 2025-01-10      | A     |
+|             2 |          2 |         2 | 2025-01-11      | B     |
+|             3 |          3 |         3 | 2025-01-12      | A     |
+|             4 |          4 |         4 | 2025-01-13      | C     |
+|             5 |          5 |         5 | 2025-01-14      | B     |
+|             6 |          6 |         6 | 2025-01-15      | A     |
+|             7 |          7 |         7 | 2025-01-16      | B     |
+|             8 |          8 |         8 | 2025-01-17      | C     |
+|             9 |          9 |         9 | 2025-01-18      | A     |
+|            10 |         10 |        10 | 2025-01-19      | B     |
++---------------+------------+-----------+-----------------+-------+
+Professors;
++--------------+------------+-----------+-------------------------------+--------------+
+| professor_id | first_name | last_name | email                         | phone        |
++--------------+------------+-----------+-------------------------------+--------------+
+|          101 | John       | Doe       | john.doe@university.edu       | 123-456-7890 |
+|          102 | Jane       | Smith     | jane.smith@university.edu     | 123-456-7891 |
+|          103 | Alice      | Johnson   | alice.johnson@university.edu  | 123-456-7892 |
+|          104 | Bob        | Brown     | bob.brown@university.edu      | 123-456-7893 |
+|          105 | Charlie    | Davis     | charlie.davis@university.edu  | 123-456-7894 |
+|          106 | David      | Martinez  | david.martinez@university.edu | 123-456-7895 |
+|          107 | Eva        | Garcia    | eva.garcia@university.edu     | 123-456-7896 |
+|          108 | Frank      | Wilson    | frank.wilson@university.edu   | 123-456-7897 |
+|          109 | Grace      | Lee       | grace.lee@university.edu      | 123-456-7898 |
+|          110 | Hannah     | Taylor    | hannah.taylor@university.edu  | 123-456-7899 |
++--------------+------------+-----------+-------------------------------+--------------+
+Students;
++------------+------------+-----------+----------------------------+--------------+---------------+-----------------+---------------+
+| student_id | first_name | last_name | email                      | phone        | date_of_birth | enrollment_date | department_id |
++------------+------------+-----------+----------------------------+--------------+---------------+-----------------+---------------+
+|          1 | John       | Doe       | john.doe@example.com       | 123-456-7890 | 2000-05-15    | 2025-01-10      |             1 |
+|          2 | Jane       | Smith     | jane.smith@example.com     | 123-456-7891 | 2001-08-22    | 2025-01-12      |             2 |
+|          3 | Alice      | Johnson   | alice.johnson@example.com  | 123-456-7892 | 1999-03-10    | 2025-01-15      |             3 |
+|          4 | Bob        | Brown     | bob.brown@example.com      | 123-456-7893 | 2002-11-30    | 2025-01-17      |             4 |
+|          5 | Charlie    | Davis     | charlie.davis@example.com  | 123-456-7894 | 2000-01-25    | 2025-01-18      |             5 |
+|          6 | David      | Martinez  | david.martinez@example.com | 123-456-7895 | 2001-07-18    | 2025-01-20      |             6 |
+|          7 | Eva        | Garcia    | eva.garcia@example.com     | 123-456-7896 | 1999-12-02    | 2025-01-22      |             7 |
+|          8 | Frank      | Wilson    | frank.wilson@example.com   | 123-456-7897 | 2000-04-13    | 2025-01-25      |             8 |
+|          9 | Grace      | Lee       | grace.lee@example.com      | 123-456-7898 | 2001-09-07    | 2025-01-28      |             9 |
+|         10 | Hannah     | Taylor    | hannah.taylor@example.com  | 123-456-7899 | 2000-10-14    | 2025-01-30      |            10 |
++------------+------------+-----------+----------------------------+--------------+---------------+-----------------+---------------+

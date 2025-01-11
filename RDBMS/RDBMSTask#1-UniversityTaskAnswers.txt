@@ -83,3 +83,172 @@ Students;
 |          9 | Grace      | Lee       | grace.lee@example.com      | 123-456-7898 | 2001-09-07    | 2025-01-28      |             9 |
 |         10 | Hannah     | Taylor    | hannah.taylor@example.com  | 123-456-7899 | 2000-10-14    | 2025-01-30      |            10 |
 +------------+------------+-----------+----------------------------+--------------+---------------+-----------------+---------------+
+1.Find the Total Number of Students in Each Department
+ SELECT department_id, COUNT(*) AS total_students
+    -> FROM students
+    -> GROUP BY department_id;
++---------------+----------------+
+| department_id | total_students |
++---------------+----------------+
+|             1 |              1 |
+|             2 |              1 |
+|             3 |              1 |
+|             4 |              1 |
+|             5 |              1 |
+|             6 |              1 |
+|             7 |              1 |
+|             8 |              1 |
+|             9 |              1 |
+|            10 |              1 |
++---------------+----------------+
+
+2.List All Courses Taught by a Specific Professor
+ SELECT c.course_name, p.first_name
+    -> FROM courses c
+    -> JOIN professors p ON c.professor_id = p.professor_id
+    -> ;
++-----------------------------+------------+
+| course_name                 | first_name |
++-----------------------------+------------+
+| Introduction to Programming | John       |
+| Circuit Theory              | Jane       |
+| Thermodynamics              | Alice      |
+| Structural Analysis         | Bob        |
+| Cell Biology                | Charlie    |
+| Quantum Physics             | David      |
+| Calculus I                  | Eva        |
+| Organic Chemistry           | Frank      |
+| Intro to Psychology         | Grace      |
+| Microeconomics              | Hannah     |
++-----------------------------+------------+
+SELECT c.course_name,p.first_name,p.last_name from courses c JOIN professors p ON c.professor_id=p.professor_id;
++-----------------------------+------------+-----------+
+| course_name                 | first_name | last_name |
++-----------------------------+------------+-----------+
+| Introduction to Programming | John       | Doe       |
+| Circuit Theory              | Jane       | Smith     |
+| Thermodynamics              | Alice      | Johnson   |
+| Structural Analysis         | Bob        | Brown     |
+| Cell Biology                | Charlie    | Davis     |
+| Quantum Physics             | David      | Martinez  |
+| Calculus I                  | Eva        | Garcia    |
+| Organic Chemistry           | Frank      | Wilson    |
+| Intro to Psychology         | Grace      | Lee       |
+| Microeconomics              | Hannah     | Taylor    |
++-----------------------------+------------+-----------+
+
+3. Find the Average Grade of Students in Each Course
+ SELECT c.course_name, AVG(c.credits) AS average_credits
+    -> FROM enrollments e
+    -> JOIN courses c ON e.course_id = c.course_id
+    -> GROUP BY c.course_name;
++-----------------------------+-----------------+
+| course_name                 | average_credits |
++-----------------------------+-----------------+
+| Introduction to Programming |          3.0000 |
+| Circuit Theory              |          4.0000 |
+| Thermodynamics              |          3.0000 |
+| Structural Analysis         |          3.0000 |
+| Cell Biology                |          3.0000 |
+| Quantum Physics             |          4.0000 |
+| Calculus I                  |          3.0000 |
+| Organic Chemistry           |          3.0000 |
+| Intro to Psychology         |          3.0000 |
+| Microeconomics              |          3.0000 |
++-----------------------------+-----------------+
+
+4. List All Students Who Have Not Enrolled in Any Courses
+ SELECT s.student_id, s.first_name
+    -> FROM students s
+    -> LEFT JOIN enrollments e ON s.student_id = e.student_id
+    -> WHERE e.course_id IS NULL;
+Empty set (0.00 sec)
+
+5. Find the Number of Courses Offered by Each Department
+ SELECT d.department_name, COUNT(c.course_id) AS number_of_courses
+    -> FROM departments d
+    -> JOIN courses c ON d.department_id = c.department_id
+    -> GROUP BY d.department_name;
++-----------------+-------------------+
+| department_name | number_of_courses |
++-----------------+-------------------+
+| CS              |                 1 |
+| EE              |                 1 |
+| ME              |                 1 |
+| CE              |                 1 |
+| Bio             |                 1 |
+| Phy             |                 1 |
+| Math            |                 1 |
+| Chem            |                 1 |
+| Psy             |                 1 |
+| Econ            |                 1 |
++-----------------+-------------------+
+
+6. List All Students Who Have Taken a Specific Course (e.g., 'Database Systems')
+ SELECT s.student_id, s.first_name
+    -> FROM students s
+    -> JOIN enrollments e ON s.student_id = e.student_id
+    -> JOIN courses c ON e.course_id = c.course_id
+    -> WHERE c.course_name = 'Organic Chemistry';
++------------+------------+
+| student_id | first_name |
++------------+------------+
+|          8 | Frank      |
++------------+------------+
+
+7. Find the Most Popular Course Based on Enrollment Numbers
+ SELECT c.course_name, COUNT(e.student_id) AS enrollment_count
+    -> FROM courses c
+    -> JOIN enrollments e ON c.course_id = e.course_id
+    -> GROUP BY c.course_name
+    -> ORDER BY enrollment_count DESC
+    -> LIMIT 1;
++-----------------------------+------------------+
+| course_name                 | enrollment_count |
++-----------------------------+------------------+
+| Introduction to Programming |                1 |
++-----------------------------+------------------+
+
+8. Find the Average Number of Credits Per Student in a Department
+ SELECT d.department_name,
+    ->        AVG(c.credits) AS avg_credits_per_student
+    -> FROM students s
+    -> JOIN departments d ON s.department_id = d.department_id
+    -> JOIN enrollments e ON s.student_id = e.student_id
+    -> JOIN courses c ON e.course_id = c.course_id
+    -> GROUP BY d.department_name;
++-----------------+-------------------------+
+| department_name | avg_credits_per_student |
++-----------------+-------------------------+
+| CS              |                  3.0000 |
+| EE              |                  4.0000 |
+| ME              |                  3.0000 |
+| CE              |                  3.0000 |
+| Bio             |                  3.0000 |
+| Phy             |                  4.0000 |
+| Math            |                  3.0000 |
+| Chem            |                  3.0000 |
+| Psy             |                  3.0000 |
+| Econ            |                  3.0000 |
++-----------------+-------------------------+
+
+9. List All Professors Who Teach in More Than One Department
+ SELECT p.professor_id, p.first_name, p.last_name, COUNT(DISTINCT c.department_id) AS num_departments
+    -> FROM professors p
+    -> JOIN courses c ON p.professor_id = c.professor_id
+    -> GROUP BY p.professor_id, p.first_name, p.last_name
+    -> HAVING COUNT(DISTINCT c.department_id) > 1;
+ Empty set (0.01 sec)
+ 
+10. Get the Highest and Lowest Grade in a Specific Course (e.g., 'Operating Systems')
+ SELECT
+    ->     MAX(CASE WHEN e.grade IS NOT NULL THEN e.grade END) AS highest_grade,
+    ->     MIN(CASE WHEN e.grade IS NOT NULL THEN e.grade END) AS lowest_grade
+    -> FROM enrollments e
+    -> JOIN courses c ON e.course_id = c.course_id
+    -> WHERE c.course_name = 'Circuit Theory';
++---------------+--------------+
+| highest_grade | lowest_grade |
++---------------+--------------+
+| B             | B            |
++---------------+--------------+

@@ -1,0 +1,208 @@
+Ola Database
+table:-drivers;
++----------+-----------+----------+------------+-----------+-------------+--------+
+| DriverID | FirstName | LastName | Phone      | City      | VehicleType | Rating |
++----------+-----------+----------+------------+-----------+-------------+--------+
+|        1 | Amit      | Sharma   | 9876543210 | Delhi     | Sedan       |      5 |
+|        2 | Raj       | Kumar    | 9988776655 | Mumbai    | SUV         |      4 |
+|        3 | Priya     | Patel    | 9123456789 | Bengaluru | Hatchback   |      3 |
+|        4 | Suresh    | Singh    | 9234567890 | Chennai   | Coupe       |      5 |
+|        5 | Anjali    | Reddy    | 9345678901 | Hyderabad | SUV         |      4 |
+|        6 | Vikram    | Yadav    | 9456789012 | Pune      | Truck       |      3 |
+|        7 | Kavita    | Gupta    | 9567890123 | Ahmedabad | Van         |      5 |
+|        8 | Ravi      | Joshi    | 9678901234 | Kolkata   | Convertible |      4 |
+|        9 | Neha      | Verma    | 9789012345 | Jaipur    | Pickup      |      4 |
+|       10 | Manish    | Khan     | 9890123456 | Lucknow   | Sedan       |      3 |
++----------+-----------+----------+------------+-----------+-------------+--------+
+ rides;
++--------+---------+----------+---------------------+------------------+-----------------------+----------+--------+------------+
+| RideId | RiderId | DriverId | RideDate            | PickupLocation   | DropLocation          | Distance | Fare   | RideStatus |
++--------+---------+----------+---------------------+------------------+-----------------------+----------+--------+------------+
+|     11 |       1 |        1 | 2025-01-01 10:30:00 | CP, Delhi        | IGI Airport, Delhi    |     15.5 | 350.75 | Completed  |
+|     12 |       2 |        2 | 2025-01-02 14:45:00 | Bandra, Mumbai   | Marine Drive, Mumbai  |        8 |  200.5 | Completed  |
+|     13 |       3 |        3 | 2025-01-03 08:00:00 | Koram, Bengaluru | MG Road, Bengaluru    |        5 | 150.25 | Completed  |
+|     14 |       4 |        4 | 2025-01-04 12:20:00 | T-Nag, Chennai   | Beng By-pass, Chennai |       20 |    400 | Ongoing    |
+|     15 |       5 |        5 | 2025-01-05 18:10:00 | Gachi, Hyderabad | HITEC, Hyderabad      |     12.5 |    275 | Completed  |
+|     16 |       6 |        6 | 2025-01-06 09:00:00 | KP, Pune         | Phoenix, Pune         |      7.5 |    180 | Completed  |
+|     17 |       7 |        7 | 2025-01-07 15:30:00 | Sark, Ahmedabad  | CG Rd, Ahmedabad      |        9 | 230.75 | Completed  |
+|     18 |       8 |        8 | 2025-01-08 17:00:00 | Salt Lk, Kolkata | Howrah, Kolkata       |      6.5 |  170.5 | Completed  |
+|     19 |       9 |        9 | 2025-01-09 20:40:00 | C-Scheme, Jaipur | Raja Pk, Jaipur       |       10 | 240.25 | Cancelled  |
+|     20 |      10 |       10 | 2025-01-10 11:50:00 | Hazrat, Lucknow  | Aminabad, Lucknow     |      8.5 |    210 | Completed  |
++--------+---------+----------+---------------------+------------------+-----------------------+----------+--------+------------+
+riders;
++---------+-----------+----------+------------+-----------+------------+
+| RiderId | FirstName | LastName | Phone      | City      | JoinDate   |
++---------+-----------+----------+------------+-----------+------------+
+|       1 | Amit      | Sharma   | 9876543210 | Delhi     | 2023-05-01 |
+|       2 | Priya     | Patel    | 9123456789 | Mumbai    | 2023-06-15 |
+|       3 | Rahul     | Kumar    | 9988776655 | Bengaluru | 2023-07-20 |
+|       4 | Anjali    | Verma    | 9234567890 | Chennai   | 2023-08-05 |
+|       5 | Ravi      | Yadav    | 9345678901 | Hyderabad | 2023-09-10 |
+|       6 | Sanya     | Reddy    | 9456789012 | Pune      | 2023-10-25 |
+|       7 | Manish    | Joshi    | 9567890123 | Ahmedabad | 2023-11-30 |
+|       8 | Neha      | Singh    | 9678901234 | Kolkata   | 2023-12-18 |
+|       9 | Vikram    | Gupta    | 9789012345 | Jaipur    | 2024-01-05 |
+|      10 | Kavita    | Mehta    | 9890123456 | Lucknow   | 2024-01-15 |
++---------+-----------+----------+------------+-----------+------------+
+payments;
++-----------+--------+----------------+--------+---------------------+
+| PaymentId | RideId | payment_method | Amount | PaymentDate         |
++-----------+--------+----------------+--------+---------------------+
+|         1 |     11 | Credit Card    | 500.75 | 2025-01-11 10:30:00 |
+|         2 |     12 | Debit Card     |  350.5 | 2025-01-12 14:45:00 |
+|         3 |     13 | Cash           | 150.25 | 2025-01-13 08:00:00 |
+|         4 |     14 | UPI            |    200 | 2025-01-14 12:20:00 |
+|         5 |     15 | Wallet         |   1000 | 2025-01-15 18:10:00 |
+|         6 |     16 | Credit Card    |    450 | 2025-01-16 09:00:00 |
+|         7 |     17 | Debit Card     | 300.75 | 2025-01-17 15:30:00 |
+|         8 |     18 | Cash           |  120.5 | 2025-01-18 17:00:00 |
+|         9 |     19 | UPI            | 600.25 | 2025-01-19 20:40:00 |
+|        10 |     20 | Wallet         |    750 | 2025-01-20 11:50:00 |
++-----------+--------+----------------+--------+---------------------+
+
+1. Retrieve the names and contact details of all drivers with a rating of 4.5 or higher.
+ SELECT FirstName, LastName, Phone, City, VehicleType, Rating
+    -> FROM drivers
+    -> WHERE Rating >= 4.5;
++-----------+----------+------------+-----------+-------------+--------+
+| FirstName | LastName | Phone      | City      | VehicleType | Rating |
++-----------+----------+------------+-----------+-------------+--------+
+| Amit      | Sharma   | 9876543210 | Delhi     | Sedan       |      5 |
+| Suresh    | Singh    | 9234567890 | Chennai   | Coupe       |      5 |
+| Kavita    | Gupta    | 9567890123 | Ahmedabad | Van         |      5 |
++-----------+----------+------------+-----------+-------------+--------+
+
+2. Find the total number of rides completed by each driver.
+ SELECT d.FirstName, d.LastName, COUNT(r.RideId) AS TotalRides
+    -> FROM drivers d
+    -> JOIN rides r ON d.DriverID = r.DriverId
+    -> WHERE r.RideStatus = 'Completed'
+    -> GROUP BY d.DriverID;
++-----------+----------+------------+
+| FirstName | LastName | TotalRides |
++-----------+----------+------------+
+| Amit      | Sharma   |          1 |
+| Raj       | Kumar    |          1 |
+| Priya     | Patel    |          1 |
+| Anjali    | Reddy    |          1 |
+| Vikram    | Yadav    |          1 |
+| Kavita    | Gupta    |          1 |
+| Ravi      | Joshi    |          1 |
+| Manish    | Khan     |          1 |
++-----------+----------+------------+
+
+3. List all riders who have never booked a ride.
+ SELECT r.FirstName, r.LastName, r.Phone, r.City
+    -> FROM riders r
+    -> LEFT JOIN rides ri ON r.RiderId = ri.RiderId
+    -> WHERE ri.RideId IS NULL;
+ Empty set (0.00 sec)
+
+4. Calculate the total earnings of each driver from completed rides.
+ SELECT d.FirstName, d.LastName, SUM(p.Amount) AS TotalEarnings
+    -> FROM drivers d
+    -> JOIN rides r ON d.DriverID = r.DriverId
+    -> JOIN payments p ON r.RideId = p.RideId
+    -> WHERE r.RideStatus = 'Completed'
+    -> GROUP BY d.DriverID;
++-----------+----------+---------------+
+| FirstName | LastName | TotalEarnings |
++-----------+----------+---------------+
+| Amit      | Sharma   |        500.75 |
+| Raj       | Kumar    |         350.5 |
+| Priya     | Patel    |        150.25 |
+| Anjali    | Reddy    |          1000 |
+| Vikram    | Yadav    |           450 |
+| Kavita    | Gupta    |        300.75 |
+| Ravi      | Joshi    |         120.5 |
+| Manish    | Khan     |           750 |
++-----------+----------+---------------+
+
+5. Retrieve the most recent ride for each rider.
+  SELECT r.FirstName, r.LastName, ri.RideDate, ri.PickupLocation, ri.DropLocation, ri.Distance, ri.Fare
+    -> FROM riders r
+    -> JOIN rides ri ON r.RiderId = ri.RiderId
+    -> WHERE ri.RideDate = (SELECT MAX(RideDate) FROM rides WHERE RiderId = r.RiderId);
++-----------+----------+---------------------+------------------+-----------------------+----------+--------+
+| FirstName | LastName | RideDate            | PickupLocation   | DropLocation          | Distance | Fare   |
++-----------+----------+---------------------+------------------+-----------------------+----------+--------+
+| Amit      | Sharma   | 2025-01-01 10:30:00 | CP, Delhi        | IGI Airport, Delhi    |     15.5 | 350.75 |
+| Priya     | Patel    | 2025-01-02 14:45:00 | Bandra, Mumbai   | Marine Drive, Mumbai  |        8 |  200.5 |
+| Rahul     | Kumar    | 2025-01-03 08:00:00 | Koram, Bengaluru | MG Road, Bengaluru    |        5 | 150.25 |
+| Anjali    | Verma    | 2025-01-04 12:20:00 | T-Nag, Chennai   | Beng By-pass, Chennai |       20 |    400 |
+| Ravi      | Yadav    | 2025-01-05 18:10:00 | Gachi, Hyderabad | HITEC, Hyderabad      |     12.5 |    275 |
+| Sanya     | Reddy    | 2025-01-06 09:00:00 | KP, Pune         | Phoenix, Pune         |      7.5 |    180 |
+| Manish    | Joshi    | 2025-01-07 15:30:00 | Sark, Ahmedabad  | CG Rd, Ahmedabad      |        9 | 230.75 |
+| Neha      | Singh    | 2025-01-08 17:00:00 | Salt Lk, Kolkata | Howrah, Kolkata       |      6.5 |  170.5 |
+| Vikram    | Gupta    | 2025-01-09 20:40:00 | C-Scheme, Jaipur | Raja Pk, Jaipur       |       10 | 240.25 |
+| Kavita    | Mehta    | 2025-01-10 11:50:00 | Hazrat, Lucknow  | Aminabad, Lucknow     |      8.5 |    210 |
++-----------+----------+---------------------+------------------+-----------------------+----------+--------+
+
+6. Count the number of rides taken in each city.
+ SELECT r.City, COUNT(ri.RideId) AS TotalRides
+    -> FROM riders r
+    -> JOIN rides ri ON r.RiderId = ri.RiderId
+    -> GROUP BY r.City;
++-----------+------------+
+| City      | TotalRides |
++-----------+------------+
+| Delhi     |          1 |
+| Mumbai    |          1 |
+| Bengaluru |          1 |
+| Chennai   |          1 |
+| Hyderabad |          1 |
+| Pune      |          1 |
+| Ahmedabad |          1 |
+| Kolkata   |          1 |
+| Jaipur    |          1 |
+| Lucknow   |          1 |
++-----------+------------+
+
+7. List all rides where the distance was greater than 20 km.
+ SELECT RideId, RiderId, DriverId, RideDate, PickupLocation, DropLocation, Distance, Fare, RideStatus
+    -> FROM rides
+    -> WHERE Distance > 20;
+ Empty set (0.00 sec)
+ 
+8. Identify the most preferred payment method.
+ SELECT payment_method, COUNT(payment_method) AS Frequency
+    -> FROM payments
+    -> GROUP BY payment_method
+    -> ORDER BY Frequency DESC
+    -> LIMIT 1;
++----------------+-----------+
+| payment_method | Frequency |
++----------------+-----------+
+| Credit Card    |         2 |
++----------------+-----------+
+
+9. Find the top 3 highest-earning drivers.
+ SELECT d.FirstName, d.LastName, SUM(p.Amount) AS TotalEarnings
+    -> FROM drivers d
+    -> JOIN rides r ON d.DriverID = r.DriverId
+    -> JOIN payments p ON r.RideId = p.RideId
+    -> WHERE r.RideStatus = 'Completed'
+    -> GROUP BY d.DriverID
+    -> ORDER BY TotalEarnings DESC
+    -> LIMIT 3;
++-----------+----------+---------------+
+| FirstName | LastName | TotalEarnings |
++-----------+----------+---------------+
+| Anjali    | Reddy    |          1000 |
+| Manish    | Khan     |           750 |
+| Amit      | Sharma   |        500.75 |
++-----------+----------+---------------+
+
+10. Retrieve details of all cancelled rides along with the rider's and driver's names.
+ SELECT ri.RideId, r.FirstName AS RiderFirstName, r.LastName AS RiderLastName, d.FirstName AS DriverFirstName, d.LastName AS DriverLastName, ri.RideDate, ri.PickupLocation, ri.DropLocation, ri.Distance, ri.Fare
+    -> FROM rides ri
+    -> JOIN riders r ON ri.RiderId = r.RiderId
+    -> JOIN drivers d ON ri.DriverId = d.DriverID
+    -> WHERE ri.RideStatus = 'Cancelled';
++--------+----------------+---------------+-----------------+----------------+---------------------+------------------+-----------------+----------+--------+
+| RideId | RiderFirstName | RiderLastName | DriverFirstName | DriverLastName | RideDate            | PickupLocation   | DropLocation    | Distance | Fare   |
++--------+----------------+---------------+-----------------+----------------+---------------------+------------------+-----------------+----------+--------+
+|     19 | Vikram         | Gupta         | Neha            | Verma          | 2025-01-09 20:40:00 | C-Scheme, Jaipur | Raja Pk, Jaipur |       10 | 240.25 |
++--------+----------------+---------------+-----------------+----------------+---------------------+------------------+-----------------+----------+--------+
+
+
