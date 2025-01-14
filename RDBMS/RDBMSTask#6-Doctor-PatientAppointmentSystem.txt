@@ -1,0 +1,231 @@
+Database_Name:-doctor_patientappointmentsystem;
+appointments;
++----------------+-----------+------------+---------------------+----------------------------+-----------+
+| appointment_id | doctor_id | patient_id | appointment_date    | reason                     | status    |
++----------------+-----------+------------+---------------------+----------------------------+-----------+
+|              1 |         1 |          1 | 2025-01-15 10:00:00 | Routine checkup            | Scheduled |
+|              2 |         2 |          2 | 2025-01-16 11:30:00 | Skin rash                  | Scheduled |
+|              3 |         3 |          3 | 2025-01-17 09:45:00 | Joint pain                 | Scheduled |
+|              4 |         4 |          4 | 2025-01-18 14:00:00 | Headache                   | Scheduled |
+|              5 |         5 |          5 | 2025-01-19 16:15:00 | Pediatric checkup          | Scheduled |
+|              6 |         6 |          6 | 2025-01-20 08:30:00 | Digestive issues           | Scheduled |
+|              7 |         7 |          7 | 2025-01-21 12:00:00 | Surgical consultation      | Scheduled |
+|              8 |         8 |          8 | 2025-01-22 09:00:00 | Eye checkup                | Scheduled |
+|              9 |         9 |          9 | 2025-01-23 13:30:00 | Ear infection              | Scheduled |
+|             10 |        10 |         10 | 2025-01-24 10:45:00 | Mental health consultation | Scheduled |
++----------------+-----------+------------+---------------------+----------------------------+-----------+
+departments;
++---------------+------------------+
+| department_id | department_name  |
++---------------+------------------+
+|             1 | Cardiology       |
+|             2 | Dermatology      |
+|             3 | Orthopedics      |
+|             4 | Neurology        |
+|             5 | Pediatrics       |
+|             6 | Gastroenterology |
+|             7 | General Surgery  |
+|             8 | Ophthalmology    |
+|             9 | ENT              |
+|            10 | Psychiatry       |
++---------------+------------------+
+doctors;
++-----------+------------+-----------+-----------------------------+--------------+---------------+--------------+--------------+
+| doctor_id | first_name | last_name | email                       | phone        | department_id | specialty_id | joining_date |
++-----------+------------+-----------+-----------------------------+--------------+---------------+--------------+--------------+
+|         1 | John       | Smith     | john.smith@hospital.com     | 123-456-7890 |             1 |            1 | 2015-06-01   |
+|         2 | Emily      | Davis     | emily.davis@hospital.com    | 234-567-8901 |             2 |            2 | 2018-02-15   |
+|         3 | Michael    | Brown     | michael.brown@hospital.com  | 345-678-9012 |             3 |            3 | 2020-03-20   |
+|         4 | Sarah      | Taylor    | sarah.taylor@hospital.com   | 456-789-0123 |             4 |            4 | 2017-05-10   |
+|         5 | David      | Wilson    | david.wilson@hospital.com   | 567-890-1234 |             5 |            5 | 2019-07-12   |
+|         6 | Sophia     | Moore     | sophia.moore@hospital.com   | 678-901-2345 |             6 |            6 | 2016-01-19   |
+|         7 | James      | Anderson  | james.anderson@hospital.com | 789-012-3456 |             7 |            7 | 2014-11-22   |
+|         8 | Olivia     | Thomas    | olivia.thomas@hospital.com  | 890-123-4567 |             8 |            8 | 2021-09-18   |
+|         9 | Lucas      | Jackson   | lucas.jackson@hospital.com  | 901-234-5678 |             9 |            9 | 2022-10-10   |
+|        10 | Ava        | White     | ava.white@hospital.com      | 012-345-6789 |            10 |           10 | 2023-01-25   |
++-----------+------------+-----------+-----------------------------+--------------+---------------+--------------+--------------+
+patients;
++------------+------------+-----------+---------------------------+--------------+---------------+--------+----------------------------+
+| patient_id | first_name | last_name | email                     | phone        | date_of_birth | gender | address                    |
++------------+------------+-----------+---------------------------+--------------+---------------+--------+----------------------------+
+|          1 | John       | Doe       | john.doe@patient.com      | 321-654-9870 | 1990-05-12    | Male   | 123 Main St, City, State   |
+|          2 | Jane       | Doe       | jane.doe@patient.com      | 432-765-0981 | 1985-03-22    | Female | 456 Oak St, City, State    |
+|          3 | Mark       | Johnson   | mark.johnson@patient.com  | 543-876-1092 | 1992-08-16    | Male   | 789 Pine St, City, State   |
+|          4 | Mary       | Wilson    | mary.wilson@patient.com   | 654-987-2103 | 1995-11-25    | Female | 101 Maple St, City, State  |
+|          5 | Steve      | Smith     | steve.smith@patient.com   | 765-109-3214 | 1980-04-09    | Male   | 202 Birch St, City, State  |
+|          6 | Anna       | Taylor    | anna.taylor@patient.com   | 876-210-4325 | 1998-07-21    | Female | 303 Cedar St, City, State  |
+|          7 | Paul       | Anderson  | paul.anderson@patient.com | 987-321-5436 | 1987-01-30    | Male   | 404 Elm St, City, State    |
+|          8 | Laura      | Thomas    | laura.thomas@patient.com  | 198-432-6547 | 1993-12-10    | Female | 505 Fir St, City, State    |
+|          9 | David      | Moore     | david.moore@patient.com   | 209-543-7658 | 2000-02-14    | Male   | 606 Pine St, City, State   |
+|         10 | Emily      | Davis     | emily.davis@patient.com   | 310-654-8769 | 1991-09-19    | Female | 707 Walnut St, City, State |
++------------+------------+-----------+---------------------------+--------------+---------------+--------+----------------------------+
+payments;
++------------+----------------+--------------+----------------+----------------+
+| payment_id | appointment_id | payment_date | payment_amount | payment_method |
++------------+----------------+--------------+----------------+----------------+
+|          1 |              1 | 2025-01-15   |         100.00 | Credit Card    |
+|          2 |              2 | 2025-01-16   |          50.00 | Cash           |
+|          3 |              3 | 2025-01-17   |          75.00 | Insurance      |
+|          4 |              4 | 2025-01-18   |         150.00 | Credit Card    |
+|          5 |              5 | 2025-01-19   |         120.00 | Insurance      |
+|          6 |              6 | 2025-01-20   |          80.00 | Cash           |
+|          7 |              7 | 2025-01-21   |         200.00 | Credit Card    |
+|          8 |              8 | 2025-01-22   |          90.00 | Insurance      |
+|          9 |              9 | 2025-01-23   |          60.00 | Cash           |
+|         10 |             10 | 2025-01-24   |         130.00 | Credit Card    |
++------------+----------------+--------------+----------------+----------------+
+specialties;
++--------------+--------------------+
+| specialty_id | specialty_name     |
++--------------+--------------------+
+|            1 | Cardiologist       |
+|            2 | Dermatologist      |
+|            3 | Orthopedic Surgeon |
+|            4 | Neurologist        |
+|            5 | Pediatrician       |
+|            6 | Gastroenterologist |
+|            7 | Surgeon            |
+|            8 | Ophthalmologist    |
+|            9 | ENT Specialist     |
+|           10 | Psychiatrist       |
++--------------+--------------------+
+
+
+1. Find the Total Number of Appointments for Each Doctor
+SELECT d.first_name, d.last_name, COUNT(a.appointment_id) AS total_appointments
+    -> FROM Doctors d
+    -> LEFT JOIN Appointments a ON d.doctor_id = a.doctor_id
+    -> GROUP BY d.doctor_id;
++------------+-----------+--------------------+
+| first_name | last_name | total_appointments |
++------------+-----------+--------------------+
+| John       | Smith     |                  1 |
+| Emily      | Davis     |                  1 |
+| Michael    | Brown     |                  1 |
+| Sarah      | Taylor    |                  1 |
+| David      | Wilson    |                  1 |
+| Sophia     | Moore     |                  1 |
+| James      | Anderson  |                  1 |
+| Olivia     | Thomas    |                  1 |
+| Lucas      | Jackson   |                  1 |
+| Ava        | White     |                  1 |
++------------+-----------+--------------------+
+
+2. List All Patients Who Have an Appointment with a Specific Doctor (e.g., Dr. John Smith)
+SELECT p.first_name, p.last_name, p.email, p.phone
+    -> FROM Patients p
+    -> JOIN Appointments a ON p.patient_id = a.patient_id
+    -> JOIN Doctors d ON a.doctor_id = d.doctor_id
+    -> WHERE d.first_name = 'John' AND d.last_name = 'Smith';
++------------+-----------+----------------------+--------------+
+| first_name | last_name | email                | phone        |
++------------+-----------+----------------------+--------------+
+| John       | Doe       | john.doe@patient.com | 321-654-9870 |
++------------+-----------+----------------------+--------------+
+
+3. Find the Number of Appointments Scheduled in a Specific Department
+SELECT dept.department_name, COUNT(a.appointment_id) AS total_appointments
+    -> FROM Departments dept
+    -> JOIN Doctors d ON dept.department_id = d.department_id
+    -> JOIN Appointments a ON d.doctor_id = a.doctor_id
+    -> GROUP BY dept.department_id;
++------------------+--------------------+
+| department_name  | total_appointments |
++------------------+--------------------+
+| Cardiology       |                  1 |
+| Dermatology      |                  1 |
+| Orthopedics      |                  1 |
+| Neurology        |                  1 |
+| Pediatrics       |                  1 |
+| Gastroenterology |                  1 |
+| General Surgery  |                  1 |
+| Ophthalmology    |                  1 |
+| ENT              |                  1 |
+| Psychiatry       |                  1 |
++------------------+--------------------+
+
+4. Find the Most Popular Specialty Based on Number of Appointments
+SELECT s.specialty_name, COUNT(a.appointment_id) AS total_appointments
+    -> FROM Specialties s
+    -> JOIN Doctors d ON s.specialty_id = d.specialty_id
+    -> JOIN Appointments a ON d.doctor_id = a.doctor_id
+    -> GROUP BY s.specialty_id
+    -> ORDER BY total_appointments DESC
+    -> LIMIT 1;
++----------------+--------------------+
+| specialty_name | total_appointments |
++----------------+--------------------+
+| Cardiologist   |                  1 |
++----------------+--------------------+
+
+5. Get the Total Payment Amount for All Completed Appointments
+SELECT SUM(p.payment_amount) AS total_payment
+    -> FROM Payments p
+    -> JOIN Appointments a ON p.appointment_id = a.appointment_id
+    -> WHERE a.status = 'Completed';
++---------------+
+| total_payment |
++---------------+
+|          NULL |
++---------------+
+
+6. Find the Number of Patients Seen by Each Doctor
+SELECT d.first_name, d.last_name, COUNT(DISTINCT a.patient_id) AS total_patients
+    -> FROM Doctors d
+    -> JOIN Appointments a ON d.doctor_id = a.doctor_id
+    -> GROUP BY d.doctor_id;
++------------+-----------+----------------+
+| first_name | last_name | total_patients |
++------------+-----------+----------------+
+| John       | Smith     |              1 |
+| Emily      | Davis     |              1 |
+| Michael    | Brown     |              1 |
+| Sarah      | Taylor    |              1 |
+| David      | Wilson    |              1 |
+| Sophia     | Moore     |              1 |
+| James      | Anderson  |              1 |
+| Olivia     | Thomas    |              1 |
+| Lucas      | Jackson   |              1 |
+| Ava        | White     |              1 |
++------------+-----------+----------------+
+
+7. List All Patients Who Have Missed Their Appointments (Status 'Cancelled')
+SELECT p.first_name, p.last_name, p.email, p.phone
+    -> FROM Patients p
+    -> JOIN Appointments a ON p.patient_id = a.patient_id
+    -> WHERE a.status = 'Cancelled';
+Empty set (0.00 sec)
+
+8. Find the Total Number of Appointments for Each Status (Scheduled, Completed, Cancelled)
+SELECT a.status, COUNT(a.appointment_id) AS total_appointments
+    -> FROM Appointments a
+    -> GROUP BY a.status;
++-----------+--------------------+
+| status    | total_appointments |
++-----------+--------------------+
+| Scheduled |                 10 |
++-----------+--------------------+
+
+9. Get the Average Payment Amount for Completed Appointments
+SELECT AVG(p.payment_amount) AS average_payment
+    -> FROM Payments p
+    -> JOIN Appointments a ON p.appointment_id = a.appointment_id
+    -> WHERE a.status = 'Completed';
++-----------------+
+| average_payment |
++-----------------+
+|            NULL |
++-----------------+
+
+10. Find the Doctor with the Highest Number of Appointments
+SELECT d.first_name, d.last_name, COUNT(a.appointment_id) AS total_appointments
+    -> FROM Doctors d
+    -> JOIN Appointments a ON d.doctor_id = a.doctor_id
+    -> GROUP BY d.doctor_id
+    -> ORDER BY total_appointments DESC
+    -> LIMIT 1;
++------------+-----------+--------------------+
+| first_name | last_name | total_appointments |
++------------+-----------+--------------------+
+| John       | Smith     |                  1 |
++------------+-----------+--------------------+

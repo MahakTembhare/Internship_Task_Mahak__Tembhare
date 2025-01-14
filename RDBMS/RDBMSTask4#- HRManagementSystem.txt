@@ -1,0 +1,320 @@
+ Database:-HRManagementSystem
+ 
+mysql> CREATE TABLE Employees (
+    ->     EmployeeID INT PRIMARY KEY,
+    ->     FirstName VARCHAR(100),
+    ->     LastName VARCHAR(100),
+    ->     Email VARCHAR(100),
+    ->     Phone VARCHAR(20),
+    ->     HireDate DATE,
+    ->     DepartmentID INT,
+    ->     ManagerID INT,
+    ->     Salary DECIMAL(10,2));
+
+
+mysql> CREATE TABLE Departments (
+    ->     DepartmentID INT PRIMARY KEY,
+    ->     DepartmentName VARCHAR(100),
+    ->     ManagerID INT,
+    ->     FOREIGN KEY (ManagerID) REFERENCES Employees(EmployeeID)
+    -> ); 
+	
+
+mysql> CREATE TABLE PerformanceReviews (
+    ->     ReviewID INT PRIMARY KEY,
+    ->     EmployeeID INT,
+    ->     ReviewDate DATE,
+    ->     PerformanceScore VARCHAR(50),
+    ->     Comments TEXT,
+    ->     FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+    -> );
+
+
+mysql> CREATE TABLE Payroll (
+    ->     PayrollID INT PRIMARY KEY,
+    ->     EmployeeID INT,
+    ->     PaymentDate DATE,
+    ->     Amount DECIMAL(10,2),
+    ->     PaymentMethod VARCHAR(50),
+    ->     FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+    -> );
+
+
+ 
+
+mysql> INSERT INTO Employees (EmployeeID, FirstName, LastName, Email, Phone, HireDate, DepartmentID, ManagerID, Salary) VALUES
+    -> (101, 'John', 'Doe', 'john.doe@example.com', '555-1234', '2022-06-15', 1, NULL, 60000),
+    -> (102, 'Jane', 'Smith', 'jane.smith@example.com', '555-5678', '2022-01-10', 2, NULL, 80000),
+    -> (103, 'Alice', 'Johnson', 'alice.johnson@example.com', '555-9876', '2023-05-22', 3, 103, 70000),
+    -> (104, 'Bob', 'Brown', 'bob.brown@example.com', '555-1122', '2021-11-02', 4, 104, 90000),
+    -> (105, 'Mary', 'Davis', 'mary.davis@example.com', '555-3344', '2022-03-17', 5, NULL, 65000),
+    -> (106, 'David', 'Miller', 'david.miller@example.com', '555-5566', '2021-08-05', 1, 101, 55000),
+    -> (107, 'Susan', 'Wilson', 'susan.wilson@example.com', '555-7788', '2022-02-15', 2, 102, 75000),
+    -> (108, 'Michael', 'Taylor', 'michael.taylor@example.com', '555-9900', '2023-01-25', 3, 103, 72000),
+    -> (109, 'Emily', 'Moore', 'emily.moore@example.com', '555-2233', '2023-06-10', 4, 104, 83000),
+    -> (110, 'Chris', 'Anderson', 'chris.anderson@example.com', '555-4455', '2023-02-02', 5, 105, 67000);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Departments (DepartmentID, DepartmentName, ManagerID) VALUES
+    -> (1, 'HR', 101),
+    -> (2, 'Finance', 102),
+    -> (3, 'IT', 103),
+    -> (4, 'Sales', 104),
+    -> (5, 'Marketing', 105);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO PerformanceReviews (ReviewID, EmployeeID, ReviewDate, PerformanceScore, Comments) VALUES
+    -> (1, 101, '2023-06-15', 'Good', 'Great team player, needs to improve communication skills.'),
+    -> (2, 102, '2023-07-01', 'Excellent', 'Excellent leadership and financial management skills.'),
+    -> (3, 103, '2023-06-20', 'Average', 'Meeting expectations, but can improve efficiency.'),
+    -> (4, 104, '2023-05-25', 'Excellent', 'Achieved sales targets ahead of schedule, great performance.'),
+    -> (5, 105, '2023-04-10', 'Good', 'Creative thinking, needs to improve on execution.'),
+    -> (6, 106, '2023-06-05', 'Average', 'Good work but often misses deadlines.'),
+    -> (7, 107, '2023-07-03', 'Excellent', 'Highly reliable, great attention to detail.'),
+    -> (8, 108, '2023-06-30', 'Good', 'Solid performance, could be more innovative.'),
+    -> (9, 109, '2023-05-15', 'Poor', 'Needs to work on time management and collaboration.'),
+    -> (10, 110, '2023-06-12', 'Good', 'Consistent performer, great attitude towards work.');
+
+
+
+mysql> INSERT INTO Payroll (PayrollID, EmployeeID, PaymentDate, Amount, PaymentMethod) VALUES
+    -> (1, 101, '2023-06-30', 60000, 'Bank Transfer'),
+    -> (2, 102, '2023-06-30', 80000, 'Bank Transfer'),
+    -> (3, 103, '2023-06-30', 70000, 'Check'),
+    -> (4, 104, '2023-06-30', 90000, 'Bank Transfer'),
+    -> (5, 105, '2023-06-30', 65000, 'Wallet'),
+    -> (6, 106, '2023-06-30', 55000, 'Bank Transfer'),
+    -> (7, 107, '2023-06-30', 75000, 'Check'),
+    -> (8, 108, '2023-06-30', 72000, 'Wallet'),
+    -> (9, 109, '2023-06-30', 83000, 'Bank Transfer'),
+    -> (10, 110, '2023-06-30', 67000, 'Check');
+  
+  
+  
+
+mysql> ALTER TABLE Employees
+    -> ADD CONSTRAINT FK_Employee_Department
+    -> FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID);
+Query OK, 10 rows affected (0.06 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+       ALTER TABLE Employees
+    -> ADD CONSTRAINT FK_Employee_Manager
+    -> FOREIGN KEY (ManagerID) REFERENCES Employees(EmployeeID);
+Query OK, 10 rows affected (0.07 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+tables;
++------------------------------+
+| Tables_in_hrmanagementsystem |
++------------------------------+
+| departments                  |
+| employees                    |
+| payroll                      |
+| performancereviews           |
++------------------------------+
+
+departments;
++--------------+----------------+-----------+
+| DepartmentID | DepartmentName | ManagerID |
++--------------+----------------+-----------+
+|            1 | HR             |       101 |
+|            2 | Finance        |       102 |
+|            3 | IT             |       103 |
+|            4 | Sales          |       104 |
+|            5 | Marketing      |       105 |
++--------------+----------------+-----------+
+
+employees;
++------------+-----------+----------+----------------------------+----------+------------+--------------+-----------+----------+
+| EmployeeID | FirstName | LastName | Email                      | Phone    | HireDate   | DepartmentID | ManagerID | Salary   |
++------------+-----------+----------+----------------------------+----------+------------+--------------+-----------+----------+
+|        101 | John      | Doe      | john.doe@example.com       | 555-1234 | 2022-06-15 |            1 |      NULL | 60000.00 |
+|        102 | Jane      | Smith    | jane.smith@example.com     | 555-5678 | 2022-01-10 |            2 |      NULL | 80000.00 |
+|        103 | Alice     | Johnson  | alice.johnson@example.com  | 555-9876 | 2023-05-22 |            3 |       103 | 70000.00 |
+|        104 | Bob       | Brown    | bob.brown@example.com      | 555-1122 | 2021-11-02 |            4 |       104 | 90000.00 |
+|        105 | Mary      | Davis    | mary.davis@example.com     | 555-3344 | 2022-03-17 |            5 |      NULL | 65000.00 |
+|        106 | David     | Miller   | david.miller@example.com   | 555-5566 | 2021-08-05 |            1 |       101 | 55000.00 |
+|        107 | Susan     | Wilson   | susan.wilson@example.com   | 555-7788 | 2022-02-15 |            2 |       102 | 75000.00 |
+|        108 | Michael   | Taylor   | michael.taylor@example.com | 555-9900 | 2023-01-25 |            3 |       103 | 72000.00 |
+|        109 | Emily     | Moore    | emily.moore@example.com    | 555-2233 | 2023-06-10 |            4 |       104 | 83000.00 |
+|        110 | Chris     | Anderson | chris.anderson@example.com | 555-4455 | 2023-02-02 |            5 |       105 | 67000.00 |
++------------+-----------+----------+----------------------------+----------+------------+--------------+-----------+----------+
+
+payroll;
++-----------+------------+-------------+----------+---------------+
+| PayrollID | EmployeeID | PaymentDate | Amount   | PaymentMethod |
++-----------+------------+-------------+----------+---------------+
+|         1 |        101 | 2023-06-30  | 60000.00 | Bank Transfer |
+|         2 |        102 | 2023-06-30  | 80000.00 | Bank Transfer |
+|         3 |        103 | 2023-06-30  | 70000.00 | Check         |
+|         4 |        104 | 2023-06-30  | 90000.00 | Bank Transfer |
+|         5 |        105 | 2023-06-30  | 65000.00 | Wallet        |
+|         6 |        106 | 2023-06-30  | 55000.00 | Bank Transfer |
+|         7 |        107 | 2023-06-30  | 75000.00 | Check         |
+|         8 |        108 | 2023-06-30  | 72000.00 | Wallet        |
+|         9 |        109 | 2023-06-30  | 83000.00 | Bank Transfer |
+|        10 |        110 | 2023-06-30  | 67000.00 | Check         |
++-----------+------------+-------------+----------+---------------+
+
+performancereviews;
++----------+------------+------------+------------------+--------------------------------------------------------------+
+| ReviewID | EmployeeID | ReviewDate | PerformanceScore | Comments                                                     |
++----------+------------+------------+------------------+--------------------------------------------------------------+
+|        1 |        101 | 2023-06-15 | Good             | Great team player, needs to improve communication skills.    |
+|        2 |        102 | 2023-07-01 | Excellent        | Excellent leadership and financial management skills.        |
+|        3 |        103 | 2023-06-20 | Average          | Meeting expectations, but can improve efficiency.            |
+|        4 |        104 | 2023-05-25 | Excellent        | Achieved sales targets ahead of schedule, great performance. |
+|        5 |        105 | 2023-04-10 | Good             | Creative thinking, needs to improve on execution.            |
+|        6 |        106 | 2023-06-05 | Average          | Good work but often misses deadlines.                        |
+|        7 |        107 | 2023-07-03 | Excellent        | Highly reliable, great attention to detail.                  |
+|        8 |        108 | 2023-06-30 | Good             | Solid performance, could be more innovative.                 |
+|        9 |        109 | 2023-05-15 | Poor             | Needs to work on time management and collaboration.          |
+|       10 |        110 | 2023-06-12 | Good             | Consistent performer, great attitude towards work.           |
++----------+------------+------------+------------------+--------------------------------------------------------------+
+
+
+
+1. Retrieve the names and contact details of employees hired after January 1, 2023.
+   SELECT FirstName, LastName, Email, Phone
+    -> FROM Employees
+    -> WHERE HireDate > '2023-01-01';
++-----------+----------+----------------------------+----------+
+| FirstName | LastName | Email                      | Phone    |
++-----------+----------+----------------------------+----------+
+| Alice     | Johnson  | alice.johnson@example.com  | 555-9876 |
+| Michael   | Taylor   | michael.taylor@example.com | 555-9900 |
+| Emily     | Moore    | emily.moore@example.com    | 555-2233 |
+| Chris     | Anderson | chris.anderson@example.com | 555-4455 |
++-----------+----------+----------------------------+----------+
+
+2. Find the total payroll amount paid to each department.
+   SELECT d.DepartmentName, SUM(p.Amount) AS TotalPayroll
+    -> FROM Payroll p
+    -> JOIN Employees e ON p.EmployeeID = e.EmployeeID
+    -> JOIN Departments d ON e.DepartmentID = d.DepartmentID
+    -> GROUP BY d.DepartmentName;
++----------------+--------------+
+| DepartmentName | TotalPayroll |
++----------------+--------------+
+| HR             |    115000.00 |
+| Finance        |    155000.00 |
+| IT             |    142000.00 |
+| Sales          |    173000.00 |
+| Marketing      |    132000.00 |
++----------------+--------------+
+
+3. List all employees who have not been assigned a manager.
+ SELECT FirstName, LastName, DepartmentID
+    -> FROM Employees
+    -> WHERE ManagerID IS NULL;
++-----------+----------+--------------+
+| FirstName | LastName | DepartmentID |
++-----------+----------+--------------+
+| John      | Doe      |            1 |
+| Jane      | Smith    |            2 |
+| Mary      | Davis    |            5 |
++-----------+----------+--------------+
+
+4. Retrieve the highest salary in each department along with the employee’s name.
+ SELECT d.DepartmentName, e.FirstName, e.LastName, e.Salary
+    -> FROM Employees e
+    -> JOIN Departments d ON e.DepartmentID = d.DepartmentID
+    -> WHERE e.Salary = (SELECT MAX(Salary) FROM Employees WHERE DepartmentID = e.DepartmentID);
++----------------+-----------+----------+----------+
+| DepartmentName | FirstName | LastName | Salary   |
++----------------+-----------+----------+----------+
+| HR             | John      | Doe      | 60000.00 |
+| Finance        | Jane      | Smith    | 80000.00 |
+| IT             | Michael   | Taylor   | 72000.00 |
+| Sales          | Bob       | Brown    | 90000.00 |
+| Marketing      | Chris     | Anderson | 67000.00 |
++----------------+-----------+----------+----------+
+
+5. Find the most recent performance review for each employee.
+ SELECT e.FirstName, e.LastName, pr.ReviewDate, pr.PerformanceScore, pr.Comments
+    -> FROM PerformanceReviews pr
+    -> JOIN Employees e ON pr.EmployeeID = e.EmployeeID
+    -> WHERE pr.ReviewDate = (SELECT MAX(ReviewDate) FROM PerformanceReviews WHERE EmployeeID = e.EmployeeID);
++-----------+----------+------------+------------------+--------------------------------------------------------------+
+| FirstName | LastName | ReviewDate | PerformanceScore | Comments                                                     |
++-----------+----------+------------+------------------+--------------------------------------------------------------+
+| John      | Doe      | 2023-06-15 | Good             | Great team player, needs to improve communication skills.    |
+| Jane      | Smith    | 2023-07-01 | Excellent        | Excellent leadership and financial management skills.        |
+| Alice     | Johnson  | 2023-06-20 | Average          | Meeting expectations, but can improve efficiency.            |
+| Bob       | Brown    | 2023-05-25 | Excellent        | Achieved sales targets ahead of schedule, great performance. |
+| Mary      | Davis    | 2023-04-10 | Good             | Creative thinking, needs to improve on execution.            |
+| David     | Miller   | 2023-06-05 | Average          | Good work but often misses deadlines.                        |
+| Susan     | Wilson   | 2023-07-03 | Excellent        | Highly reliable, great attention to detail.                  |
+| Michael   | Taylor   | 2023-06-30 | Good             | Solid performance, could be more innovative.                 |
+| Emily     | Moore    | 2023-05-15 | Poor             | Needs to work on time management and collaboration.          |
+| Chris     | Anderson | 2023-06-12 | Good             | Consistent performer, great attitude towards work.           |
++-----------+----------+------------+------------------+--------------------------------------------------------------+
+
+6. Count the number of employees in each department.
+ SELECT d.DepartmentName, COUNT(e.EmployeeID) AS EmployeeCount
+    -> FROM Employees e
+    -> JOIN Departments d ON e.DepartmentID = d.DepartmentID
+    -> GROUP BY d.DepartmentName;
++----------------+---------------+
+| DepartmentName | EmployeeCount |
++----------------+---------------+
+| HR             |             2 |
+| Finance        |             2 |
+| IT             |             2 |
+| Sales          |             2 |
+| Marketing      |             2 |
++----------------+---------------+
+
+7. List all employees who have received a performance score of "Excellent." Identify the
+   most frequently used payment method in payroll.
+  SELECT e.FirstName, e.LastName, pr.PerformanceScore
+    -> FROM PerformanceReviews pr
+    -> JOIN Employees e ON pr.EmployeeID = e.EmployeeID
+    -> WHERE pr.PerformanceScore = 'Excellent';
++-----------+----------+------------------+
+| FirstName | LastName | PerformanceScore |
++-----------+----------+------------------+
+| Jane      | Smith    | Excellent        |
+| Bob       | Brown    | Excellent        |
+| Susan     | Wilson   | Excellent        |
++-----------+----------+------------------+
+ SELECT PaymentMethod, COUNT(*) AS Frequency
+    -> FROM Payroll
+    -> GROUP BY PaymentMethod
+    -> ORDER BY Frequency DESC
+    -> LIMIT 1;
++---------------+-----------+
+| PaymentMethod | Frequency |
++---------------+-----------+
+| Bank Transfer |         5 |
++---------------+-----------+
+
+8. Retrieve the top 5 highest-paid employees along with their departments.
+ SELECT e.FirstName, e.LastName, e.Salary, d.DepartmentName
+    -> FROM Employees e
+    -> JOIN Departments d ON e.DepartmentID = d.DepartmentID
+    -> ORDER BY e.Salary DESC
+    -> LIMIT 5;
++-----------+----------+----------+----------------+
+| FirstName | LastName | Salary   | DepartmentName |
++-----------+----------+----------+----------------+
+| Bob       | Brown    | 90000.00 | Sales          |
+| Emily     | Moore    | 83000.00 | Sales          |
+| Jane      | Smith    | 80000.00 | Finance        |
+| Susan     | Wilson   | 75000.00 | Finance        |
+| Michael   | Taylor   | 72000.00 | IT             |
++-----------+----------+----------+----------------+
+
+9. Show details of all employees who report directly to a specific manager (e.g.,
+   ManagerID = 101).
+  SELECT e.FirstName, e.LastName, e.DepartmentID, e.Salary
+    -> FROM Employees e
+    -> WHERE e.ManagerID = 101;
++-----------+----------+--------------+----------+
+| FirstName | LastName | DepartmentID | Salary   |
++-----------+----------+--------------+----------+
+| David     | Miller   |            1 | 55000.00 |
++-----------+----------+--------------+----------+
