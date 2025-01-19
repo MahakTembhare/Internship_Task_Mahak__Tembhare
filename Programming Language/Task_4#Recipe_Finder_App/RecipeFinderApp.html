@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input, .search-bar select {
+            width: calc(100% - 120px);
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .search-bar button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
+        .recipes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .recipe {
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .recipe h3 {
+            margin: 0 0 5px;
+        }
+
+        .recipe p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Recipe Finder</h1>
+    <div class="search-bar">
+        <input type="text" id="ingredient-input" placeholder="Enter ingredients (e.g., chicken, rice)...">
+        <select id="recipe-type">
+            <option value="">All Types</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+        </select>
+        <button id="search-btn">Search</button>
+    </div>
+    <div class="recipes" id="recipes-container"></div>
+</div>
+
+<script>
+    const recipes = [
+    { title: 'Chicken Fried Rice', type: 'Lunch', ingredients: ['chicken', 'rice', 'soy sauce'] },
+    { title: 'Pancakes', type: 'Breakfast', ingredients: ['flour', 'milk', 'egg'] },
+    { title: 'Grilled Cheese Sandwich', type: 'Lunch', ingredients: ['bread', 'cheese', 'butter'] },
+    { title: 'Spaghetti Bolognese', type: 'Dinner', ingredients: ['pasta', 'beef', 'tomato'] },
+    { title: 'Avocado Toast', type: 'Breakfast', ingredients: ['avocado', 'bread', 'lemon'] },
+    { title: 'Caesar Salad', type: 'Lunch', ingredients: ['lettuce', 'chicken', 'croutons', 'parmesan', 'caesar dressing'] },
+    { title: 'French Toast', type: 'Breakfast', ingredients: ['bread', 'egg', 'milk', 'cinnamon', 'syrup'] },
+    { title: 'Chicken Alfredo', type: 'Dinner', ingredients: ['chicken', 'pasta', 'alfredo sauce'] },
+    { title: 'Vegetable Stir Fry', type: 'Lunch', ingredients: ['vegetables', 'soy sauce', 'rice'] },
+    { title: 'Margarita Pizza', type: 'Dinner', ingredients: ['pizza dough', 'tomato', 'mozzarella', 'basil'] },
+    { title: 'Egg Salad', type: 'Lunch', ingredients: ['eggs', 'mayonnaise', 'mustard', 'lettuce'] },
+    { title: 'Omelette', type: 'Breakfast', ingredients: ['eggs', 'cheese', 'onions', 'peppers'] },
+    { title: 'Beef Tacos', type: 'Dinner', ingredients: ['beef', 'taco shells', 'lettuce', 'cheese', 'sour cream'] },
+    { title: 'Vegetarian Chili', type: 'Dinner', ingredients: ['beans', 'tomatoes', 'onions', 'spices'] },
+    { title: 'Lentil Soup', type: 'Lunch', ingredients: ['lentils', 'carrots', 'celery', 'onions'] },
+    { title: 'Chicken Nuggets', type: 'Dinner', ingredients: ['chicken', 'bread crumbs', 'egg', 'flour'] },
+    { title: 'Grilled Salmon', type: 'Dinner', ingredients: ['salmon', 'lemon', 'olive oil', 'herbs'] },
+    { title: 'Quinoa Salad', type: 'Lunch', ingredients: ['quinoa', 'tomatoes', 'cucumber', 'feta', 'olive oil'] },
+    { title: 'Shrimp Scampi', type: 'Dinner', ingredients: ['shrimp', 'garlic', 'butter', 'pasta'] },
+    { title: 'Chicken Soup', type: 'Dinner', ingredients: ['chicken', 'carrots', 'celery', 'onions', 'broth'] },
+    { title: 'Fruit Salad', type: 'Breakfast', ingredients: ['apples', 'oranges', 'grapes', 'berries'] },
+    { title: 'Baked Ziti', type: 'Dinner', ingredients: ['pasta', 'tomato sauce', 'cheese', 'meatballs'] }
+    ];
+
+    const ingredientInput = document.getElementById('ingredient-input');
+    const recipeType = document.getElementById('recipe-type');
+    const searchBtn = document.getElementById('search-btn');
+    const recipesContainer = document.getElementById('recipes-container');
+
+    function searchRecipes() {
+        const ingredientQuery = ingredientInput.value.toLowerCase().split(',').map(ing => ing.trim());
+        const selectedType = recipeType.value;
+
+        const filteredRecipes = recipes.filter(recipe => {
+            const hasIngredients = ingredientQuery.every(ing => recipe.ingredients.includes(ing));
+            const matchesType = selectedType === '' || recipe.type === selectedType;
+            return hasIngredients && matchesType;
+        });
+
+        displayRecipes(filteredRecipes);
+    }
+
+    function displayRecipes(filteredRecipes) {
+        recipesContainer.innerHTML = '';
+
+        if (filteredRecipes.length === 0) {
+            recipesContainer.innerHTML = '<p>No recipes found. Try different ingredients or types.</p>';
+            return;
+        }
+
+        filteredRecipes.forEach(recipe => {
+            const recipeDiv = document.createElement('div');
+            recipeDiv.className = 'recipe';
+
+            const recipeTitle = document.createElement('h3');
+            recipeTitle.textContent = recipe.title;
+
+            const recipeType = document.createElement('p');
+            recipeType.textContent = `Type: ${recipe.type}`;
+
+            const recipeIngredients = document.createElement('p');
+            recipeIngredients.textContent = `Ingredients: ${recipe.ingredients.join(', ')}`;
+
+            recipeDiv.appendChild(recipeTitle);
+            recipeDiv.appendChild(recipeType);
+            recipeDiv.appendChild(recipeIngredients);
+
+            recipesContainer.appendChild(recipeDiv);
+        });
+    }
+
+    searchBtn.addEventListener('click', searchRecipes);
+
+    ingredientInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            searchRecipes();
+        }
+    });
+</script>
+
+</body>
+</html>
