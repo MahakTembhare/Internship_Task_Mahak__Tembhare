@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Quiz App</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: Arial, sans-serif;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #00796b;
+        }
+        .btn-primary, .btn-outline-primary {
+            background-color: #00796b;
+            border-color: #00796b;
+            color: white;
+        }
+        .btn-primary:hover, .btn-outline-primary:hover {
+            background-color: #004d40;
+            border-color: #004d40;
+        }
+        .result {
+            display: none;
+        }
+        .instructions, .question-page {
+            display: none;
+        }
+        .popup {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            display: none;
+        }
+        .popup.success {
+            background-color: #4caf50;
+        }
+        .popup.error {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container quiz-container mt-5">
+        <h2 class="text-center">Mini Quiz App</h2>
+        <div id="start-page">
+            <button class="btn btn-primary btn-block" onclick="startQuiz()">Start Quiz</button>
+        </div>
+        <div id="instructions" class="instructions">
+            <h4>Rules of this Quiz:</h4>
+            <p>1. You will have only 15 seconds per each question.</p>
+            <p>2. Once you select your answer, it can't be undone.</p>
+            <p>3. You can't select any option once time goes off.</p>
+            <p>4. You can't exit from the Quiz while you're playing.</p>
+            <p>5. You'll get points on the basis of your correct answers.</p>
+            <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-danger" onclick="endQuiz()">Exit Quiz</button>
+                <button class="btn btn-primary" onclick="showQuestionPage()">Continue</button>
+            </div>
+        </div>
+        <div id="question-page" class="question-page">
+            <div id="question-container"></div>
+            <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-secondary" onclick="previousQuestion()">Previous</button>
+                <button class="btn btn-primary" onclick="nextQuestion()">Next</button>
+            </div>
+            <div class="mt-3 text-right"><span id="timer"></span></div>
+        </div>
+        <div id="result" class="result mt-3">
+            <h3 class="text-center">Your Score: <span id="score"></span></h3>
+            <button class="btn btn-primary btn-block" onclick="resetQuiz()">Retake Quiz</button>
+            <button class="btn btn-danger btn-block" onclick="endQuiz()">End Quiz</button>
+        </div>
+    </div>
+    <div id="popup" class="popup"></div>
+    <script src="quiz.js"></script>
+</body>
+</html>
